@@ -1,0 +1,41 @@
+export PIP_REQUIRE_VIRTUALENV=true
+export PIP_DOWNLOAD_CACHE=$HOME/.pip/cache
+
+# Custom Prompt (with git)
+#export PS1='\[\e[01;30m\]\t`if [ $? = 0 ]; then echo "\[\e[32m\] ✔ "; else echo "\[\e[31m\] ✘ "; fi`\[\e[00;37m\]\u@\h\[\e[01;37m\]:`[[ $(git status 2> /dev/null | head -n2 | tail -n1) != "# Changes to be committed:" ]] && echo "\[\e[31m\]" || echo "\[\e[33m\]"``[[ $(git status 2> /dev/null | tail -n1) != "nothing to commit (working directory clean)" ]] || echo "\[\e[32m\]"`$(__git_ps1 "(%s)\[\e[00m\]")\[\e[01;34m\]\w\[\e[00m\]\$ '
+export PS1='\[\e]0;\w\a\]\n\[\e[32m\]\u@\[\e[31m\]\H \[\e[33m\]\w\[\e[0m\]\n$\[\033]0;\u@\H:\w\007\] '
+
+# source general bash_aliases file
+if [ -f ~/.bash_aliases ]; then
+	source ~/.bash_aliases
+fi
+
+# source global definitions
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
+fi
+
+# User specific aliases and functions
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function
+
+# Path to bin directory in HOME
+PATH=$PATH:$HOME/bin
+
+# source git-completion bash script
+if [ -f ~/.git-completion.bash ]; then
+    source ~/.git-completion.bash
+fi
+
+# source git-prompt bash script
+if [ -f ~/.git-prompt.sh ]; then
+    source ~/.git-prompt.sh
+fi
+
+# source custom bash functions
+if [ -f ~/.bash_functions ]; then
+    source ~/.bash_functions
+fi
+
+# Attach to an existing tmux session or create a new session
+tmux attach -t $USER || tmux new -t $USER

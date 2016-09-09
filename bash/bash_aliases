@@ -1,0 +1,42 @@
+# Determine OS
+_myos="$(uname -s)"
+
+# List aliases
+case $_myos in
+  Darwin) alias ll='ls -aGFH';;
+  Linux)  alias ll='ls -al --color=auto';;
+  *);;
+esac
+
+# Misc aliases
+alias tree='tree -Csu'                  
+alias opendns='echo "208.67.222.222  208.67.220.220"'
+alias c='clear'
+
+# Movement aliases
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+
+# Git
+alias ga='git add'
+alias gp='git push'
+alias gl='git log'
+alias gs='git status'
+alias gd='git diff'
+alias gm='git commit -m'
+alias gma='git commit -am'
+alias gb='git branch'
+alias gc='git checkout'
+alias gra='git remote add'
+alias grr='git remote rm'
+alias gpu='git pull'
+alias gcl='git clone'
+alias gta='git tag -a -m'
+alias gf='git reflog'
+
+# Grep
+alias grep='grep --color=auto'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
